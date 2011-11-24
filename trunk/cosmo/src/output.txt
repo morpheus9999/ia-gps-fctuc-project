@@ -1,0 +1,2 @@
+Network = ../simulations/lattice/lattice.sumo.cfg0
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)

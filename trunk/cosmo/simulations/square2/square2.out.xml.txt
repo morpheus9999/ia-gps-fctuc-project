@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+
+<!-- generated on 15-11-2011 16:35:03 by SUMO gui Version 0.12.2
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.sf.net/xsd/sumo-gui.exeConfiguration.xsd">
+
+    <input>
+        <net-file value="C:\Documents and Settings\Paula Mendes\Ambiente de trabalho\workspace\cosmo\simulations\square2\square2.net.xml"/>
+        <route-files value="C:\Documents and Settings\Paula Mendes\Ambiente de trabalho\workspace\cosmo\simulations\square2\square2.rou.xml"/>
+    </input>
+
+    <output>
+        <netstate-dump value="C:\Documents and Settings\Paula Mendes\Ambiente de trabalho\workspace\cosmo\simulations\square2\square2.out.xml.txt"/>
+    </output>
+
+    <time>
+        <begin value="0"/>
+        <end value="3600"/>
+    </time>
+
+    <traci_server>
+        <remote-port value="8814"/>
+    </traci_server>
+
+    <gui_only>
+        <gui-settings-file value=""/>
+    </gui_only>
+
+</configuration>

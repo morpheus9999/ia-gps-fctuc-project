@@ -1,0 +1,1 @@
+python cosmoController.py ../simulations/lattice/lattice.sumo.cfg0

@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+
+<!-- generated on 15-11-2011 16:34:35 by SUMO gui Version 0.12.2
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.sf.net/xsd/sumo-gui.exeConfiguration.xsd">
+
+    <input>
+        <net-file value="C:\Documents and Settings\Paula Mendes\Ambiente de trabalho\workspace\sumo-0.12.2\examples\sumo\busses\net.net.xml"/>
+        <additional-files value="C:\Documents and Settings\Paula Mendes\Ambiente de trabalho\workspace\sumo-0.12.2\examples\sumo\busses\input_additional.add.xml"/>
+    </input>
+
+    <output>
+        <vehroute-output value="C:\Documents and Settings\Paula Mendes\Ambiente de trabalho\workspace\sumo-0.12.2\examples\sumo\busses\vehroutes.xml"/>
+    </output>
+
+    <report>
+        <no-duration-log value="true"/>
+        <no-step-log value="true"/>
+    </report>
+
+    <gui_only>
+        <gui-settings-file value=""/>
+    </gui_only>
+
+</configuration>
+-->
+
+<routes>
+    <vehicle id="0" depart="0.00" arrival="367.00">
+        <route edges="2/0to2/1 2/1to1/1 1/1to1/2 1/2to0/2 0/2to0/1 0/1to0/0 0/0to1/0 1/0to2/0 2/0to2/1"/>
+    </vehicle>
+
+    <vehicle id="1" depart="4.00" arrival="395.00">
+        <route edges="2/0to2/1 2/1to1/1 1/1to1/2 1/2to0/2 0/2to0/1 0/1to0/0 0/0to1/0 1/0to2/0 2/0to2/1"/>
+    </vehicle>
+
+    <vehicle id="2" depart="8.00" arrival="447.00">
+        <route edges="2/0to2/1 2/1to1/1 1/1to1/2 1/2to0/2 0/2to0/1 0/1to0/0 0/0to1/0 1/0to2/0 2/0to2/1"/>
+    </vehicle>
+
+</routes>

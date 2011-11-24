@@ -1,0 +1,35 @@
+<nodes>
+    <node id="01" x="0.0" y="-1250.0" />
+    <node id="02" x="0.0" y="-937.5" />
+    <node id="03" x="0.0" y="-625.0" type="traffic_light"/>
+    <node id="04" x="0.0" y="-312.5" />
+    <node id="05" x="0.0" y="312.5" />
+    <node id="06" x="0.0" y="625.0" type="traffic_light"/>
+    <node id="07" x="0.0" y="937.5" />
+    <node id="08" x="0.0" y="1250.0" />
+    <node id="09" x="-883.9" y="-883.9" />
+    <node id="10" x="-662.9" y="-662.9" type="traffic_light"/>
+    <node id="11" x="-441.9" y="-441.9" />
+    <node id="12" x="-220.0" y="-220.0" />
+    <node id="13" x="220.0" y="220.0" />
+    <node id="14" x="441.9" y="441.9" />
+    <node id="15" x="662.9" y="662.9" type="traffic_light"/>
+    <node id="16" x="883.9" y="883.9" />
+    <node id="17" x="-1250.0" y="0.0" />
+    <node id="18" x="-937.5" y="0.0" />
+    <node id="19" x="-625.0" y="0.0" type="traffic_light"/>
+    <node id="20" x="-312.5" y="0.0" />
+    <node id="21" x="312.5" y="0.0" />
+    <node id="22" x="625.0" y="0.0" type="traffic_light"/>
+    <node id="23" x="937.5" y="0.0" />
+    <node id="24" x="1250.0" y="0.0" />
+    <node id="25" x="-883.9" y="883.9" />
+    <node id="26" x="-662.9" y="662.9" type="traffic_light"/>
+    <node id="27" x="-441.9" y="441.9" />
+    <node id="28" x="-220.0" y="220.0" />
+    <node id="29" x="220.0" y="-220.0" />
+    <node id="30" x="441.9" y="-441.9" />
+    <node id="31" x="662.9" y="-662.9" type="traffic_light"/>
+    <node id="32" x="883.9" y="-883.9" />
+</nodes>
+

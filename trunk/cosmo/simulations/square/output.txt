@@ -1,0 +1,19 @@
+Network = square.sumo.cfg
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+Network = square.sumo.cfg
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+Network = square.sumo.cfg
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+Network = square.sumo.cfg
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+Network = square.sumo.cfg
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+421.731 1887.50351 nan nan
+Network = square.sumo.cfg
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+Network = square.sumo.cfg
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+421.731 1887.50351 nan nan
+Network = square.sumo.cfg
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+nan nan nan nan
