@@ -1,0 +1,19 @@
+<configuration>
+	<input>
+		<net-file value="lattice.net.xml"/>
+ 		<route-files value="lattice.rou1.xml"/>
+	</input>
+	<output>
+		<tripinfo value="lattice.out.tripinfo.xml"/>
+	</output>
+	<time>
+		<!--<begin value="0"/>-->
+		<end value="1"/>
+	</time>
+	<!--<processing>
+		<time-to-teleport value="7200"/>
+	</processing>-->
+	<traci_server>
+ 		<remote-port value="8814"/>
+	</traci_server>
+</configuration>
