@@ -116,7 +116,7 @@ class Controller:
 			
 			# simulates accidents
 			if random.random() < ACCIDENT_PROBABILITY:
-				self.__simulateAccident(stoppedAgents)
+				self.__simulateAccident(stoppedAgents, simulationStep)
 
 		# closes the communication with traci
 		cmdClose()
