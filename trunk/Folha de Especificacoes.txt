@@ -1,29 +1,30 @@
-Jorge e Miguel,
+Caro professor,
 
-Em virtude do tempo disponível para execução do trabalho ser escasso, iria propor a simplificação de processos para atingirem os objectivos em tempo útil.
+A implementação do algoritmo de Dijkstra já se encontra implementada no código que nos foi fornecido por um aluno do ano passado. Apenas terá de sofrer algumas alterações, nomeadamente no que toca aos pesos do grafo que o Dijkstra tem em conta.
 
-Assim, e embora a abordagem utilizando protocolos de redes de comunicações (em particular os da classe link-state, que utilizam o algoritmo Dijkstra) permitisse distribuir a carga de computação pela rede, a sua implementação pode revelar-se demasiado demorada para o tempo disponível, pois implicaria da vossa parte a consulta de documentação suplementar considerável. O que não significa que, noutro contexto e com mais tempo, não se possa equacionar a elaboração de um trabalho mais abrangente seguindo uma abordagem similar.
+Assim, a nossa ideia é a seguinte:
 
-Vamos então tentar centrar o trabalho na utilização do Dijkstra com o que designaram por super-agente. Mas, para ver se tal é viável, e dado que essa abordagem vai ter que ter "shortcomings" nos processos de actualização de informação e computação, vimos solicitar-vos que enviem uma "folha de especificações" o mais precisa possível,de preferência até amanhã. Esta deverá indicar os claramente os objectivos do trabalho,  os métodos a utilizar, a proposta de implementação, os resultados esperados, entre outros. E não se esqueçam de responder a algumas questões-chave:
+Usar o Dijkstra, mas os pesos do grafo serão constituídos pelo tempo mínimo e não pela distancia mínima, sendo esse tempo minimo calculado atraves dos seguintes parâmetros: 
+-> (Velocidade Mínima (carro mais lento) * P1 + Velocidade Máxima Permitida (troço estrada) * P2 + Velocidade Média (carros estrada) * P3)/Comprimento Troço Estrada
 
-* a optimização do percurso é para ser efectuada "on the fly" para apenas um (sortudo) utilizador, ou para todos em simultâneo?
+em que P1+P2+P3 = 1
 
-* na assumpção da segunda hipótese do ponto anterior, como pensam proceder à actualização da informação das melhores rotas dos utilizadores da rede:
+Estes pesos terão em conta as seguintes caracteristicas:
+Se o carro mais lento estiver no inicio do troço de estrada, terá maior peso que os outros parâmetros da formula.
+Se não existirem carros na via (ponto inicial), P2 terá o valor máximo.
 
-  - sempre que cada veículo passa um cruzamento, baixando o "peso" da rua de onde saiu, e aumentando o da rua onde entra, o que pode implicar alteração de rota óptima para alguns/todos os outros utilizadores?
+estes tempos são actualizados periodicamente
+os agentes apenas pedirão um recalculo da rota através destas informações, quando estiverem a uma distancia D do proximo cruzamento(possibilidade de alterar rota)
+O agente-master apenas responderá a pedidos on-demand de recalculos de rotas.
+o processo de cálculo das rotas é efectuado centralmente com o que designamos por agente-master
 
-  - sempre que a rota óptima desse utilizador é alterada? Mas, nesse caso, o novo cálculo da sua rota terá que ser efectuado com a nova origem (ponto onde o veículo se encontra) e o destino (que se mantém), pois o veículo poderá já não se encontrar "dentro" da nova rota, se esta for calculada com as origem/destino (OD) originais;
+este algoritmo terá em conta todos os troços de estradas existentes(?)
 
-  - periodicamente, assumindo dentro do período de tempo escolhido a manutenção das rotas anteriores como estáticas? O problema referido no sub-ponto anterior pode novamente colocar-se aquando da actualização de rota;
+todos estes parâmetros (P1,P2,P3 e D) terão de ser objecto de estudo experimental
 
-  - outro método? Qual?
+Em relação à questão de inovação da nossa abordagem, pelo que apurámos, a maior parte dos sistemas de transito não usa informação real. Usam informações estatisticas. O unico que esta a usar informação real neste momento é o tom tom e mesmo assim tem um delay de 15 minutos.
 
-* o processo de cálculo das rotas é efectuado centralmente -- o que implica  a distribuição generalizada e personalizada dos resultados, com as questões anteriormente referidas -- ou por cada veículo? No segundo caso, têm o problema de como conhecer o estado actual de todos os outros veículos, que vão influir no processo de cálculo individual. Como pensam resolvê-lo?
+O google também usa tráfego ao vivo em determinadas zonas, e também outro que recorre a dados estatísticos. O que pretendemos é, através de toda a informação da rede, obter o caminho mais rápido, usando o mínimo de cálculos possíveis.
 
-Estes pontos não pretendem criar-vos apreensão sobre a exequibilidade do trabalho, mas tão só chamar-vos a atenção para alguns dos problemas com os quais se vão deparar, e promover a sua solução, ou exclusão com assumpções iniciais que delimitem o problema por forma a que seja resolúvel dentro do prazo.
-
-Outra questão muito importante para viabilizar uma publicação tem a ver com a resposta à questão: onde é que se encontra a inovação da abordagem proposta? É que, pelo que consegui perceber, a abordagem que me pareceu estarem a propor não difere substancialmente da que os fabricantes de GPS's (Garmin, Tomtom, Ndrive,...) estão a prosseguir, já em fase de implementação, portanto muito para lá da fase de inovação que consiste no vosso objectivo.
-
-Preparem então o documento o melhor que puderem e enviem-no, para que possamos propor-vos abordagens que permitam viabilizar a proposta a seguir.
-
-Bom trabalho,
+Perguntar ao professor:
+Como gerar rotas de A para B.
