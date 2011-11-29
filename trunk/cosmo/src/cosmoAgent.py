@@ -2,6 +2,7 @@ import math, random
 from cosmoCommunication import Communication
 from cosmoConstants import ACCEPT_NEW_ROUTE_PROB, ROUTING_ALGORITHM
 
+
 class Agent:
 
 	def __init__(self, network, route, routeCheckFrequency):
