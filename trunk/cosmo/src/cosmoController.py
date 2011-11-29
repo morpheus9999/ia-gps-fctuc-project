@@ -3,7 +3,7 @@ from cosmoConstants import USUAL_AGENT_COLOR, STOPPED_AGENT_COLOR, CHANGED_ROUTE
 from cosmoNetwork import Network
 from cosmoPopulation import Population
 sys.path.append(os.path.join('..', '..', 'sumo-0.12.2', 'tools', 'traci'))
-from traciControl import initTraCI, cmdSimulationStep, cmdGetSimulationVariable_arrivedIDList, cmdGetSimulationVariable_departedIDList, cmdGetVehicleVariable_idList, cmdGetVehicleVariable_laneID, cmdGetVehicleVariable_position, cmdGetVehicleVariable_speed, cmdChangeVehicleVariable_speed, cmdChangeVehicleVariable_color, cmdChangeVehicleVariable_changeRoute, cmdGetLaneVariable_speed, cmdClose #,cmdGetEdgeVariable_idList, cmdGetEdgeVariable_occupancy
+from traciControl import initTraCI, cmdSimulationStep, cmdGetSimulationVariable_arrivedIDList, cmdGetSimulationVariable_departedIDList, cmdGetVehicleVariable_idList, cmdGetVehicleVariable_laneID, cmdGetVehicleVariable_position, cmdGetVehicleVariable_speed, cmdChangeVehicleVariable_speed, cmdChangeVehicleVariable_color, cmdChangeVehicleVariable_changeRoute, cmdGetLaneVariable_speed, cmdClose, cmdGetEdgeVariable_idList, cmdGetEdgeVariable_occupancy
 
 
 class Controller:
@@ -110,13 +110,13 @@ class Controller:
 			#self.__accidentTimer(stoppedAgents)
 			
 			# updates the network weights and statistics and checks agent decisions, providing departed and arrived agents for the simulated step 
-			#self.__updateEdgeWeights()
-			#self.__network.updateOccupancyStats()
-			#self.__population.agentActions(simulationStep, cmdGetSimulationVariable_departedIDList(), cmdGetSimulationVariable_arrivedIDList(), self)
+			self.__updateEdgeWeights()
+			self.__network.updateOccupancyStats()
+			self.__population.agentActions(simulationStep, cmdGetSimulationVariable_departedIDList(), cmdGetSimulationVariable_arrivedIDList(), self)
 			
 			# simulates accidents
-			#if random.random() < ACCIDENT_PROBABILITY:
-			#	self.__simulateAccident(stoppedAgents)
+			if random.random() < ACCIDENT_PROBABILITY:
+				self.__simulateAccident(stoppedAgents)
 
 		# closes the communication with traci
 		cmdClose()
@@ -128,12 +128,12 @@ class Controller:
 	# updates network edge weights
 	def __updateEdgeWeights(self):
 
-		#edgeIdList = cmdGetEdgeVariable_idList()
+		edgeIdList = cmdGetEdgeVariable_idList()
 		edgeWeights = {}
 		
-		#for edgeId in edgeIdList:
-		#	if edgeId[0] != ':':
-		#		edgeWeights[edgeId] = cmdGetEdgeVariable_occupancy(edgeId)
+		for edgeId in edgeIdList:
+			if edgeId[0] != ':':
+				edgeWeights[edgeId] = cmdGetEdgeVariable_occupancy(edgeId)
 					
 		self.__network.setEdgeWeights(edgeWeights)
 
