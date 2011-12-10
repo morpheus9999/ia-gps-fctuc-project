@@ -534,6 +534,9 @@ def cmdChangeVehicleVariable_changeRoute(vehID, edgeList):
     
     this changes route for vehicle id 1 to edges 1-2-4-6-7
     """
+    
+    # print 'tC ' + str(edgeList)
+    
     beginChangeMessage(tc.CMD_SET_VEHICLE_VARIABLE, 1+1+1+4+len(vehID)+1+4+sum(map(len, edgeList))+4*len(edgeList), tc.VAR_ROUTE, vehID)
     _message.string += struct.pack("!Bi", tc.TYPE_STRINGLIST, len(edgeList))
     for edge in edgeList:
@@ -896,3 +899,27 @@ def cmdClose():
         _sendExact()
         _socket.close()
 
+
+
+# ===================================================
+# edge interaction
+# ===================================================
+# ---------------------------------------------------
+# get state
+# ---------------------------------------------------
+def cmdGetEdgeVariable_idList():
+    result = buildSendReadNew1StringParamCmd(tc.CMD_GET_EDGE_VARIABLE, tc.ID_LIST, "x")
+    return result.readStringList() # Variable value
+
+def cmdGetEdgeVariable_occupancy(edgeID):
+    result = buildSendReadNew1StringParamCmd(tc.CMD_GET_EDGE_VARIABLE, tc.LAST_STEP_OCCUPANCY, edgeID)
+    return result.read("!f")[0] # Variable value
+def cmdGetEdgeVariable_meanSpeed(edgeID):
+    result = buildSendReadNew1StringParamCmd(tc.CMD_GET_EDGE_VARIABLE, tc.LAST_STEP_MEAN_SPEED, edgeID)
+    return result.read("!f")[0] # Variable value
+def cmdGetEdgeVariable_LENGTH(edgeID):
+    result = buildSendReadNew1StringParamCmd(tc.CMD_GET_EDGE_VARIABLE, tc.VAR_LENGTH, edgeID)
+    return result.read("!f")[0] # Variable value
+def cmdGetEdgeVariable_speed(laneID):
+    result = buildSendReadNew1StringParamCmd(tc.CMD_GET_EDGE_VARIABLE, tc.VAR_MAXSPEED, edgeID)
+    return result.read("!f")[0] # Variable value
