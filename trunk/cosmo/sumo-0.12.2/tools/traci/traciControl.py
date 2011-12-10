@@ -914,3 +914,12 @@ def cmdGetEdgeVariable_idList():
 def cmdGetEdgeVariable_occupancy(edgeID):
     result = buildSendReadNew1StringParamCmd(tc.CMD_GET_EDGE_VARIABLE, tc.LAST_STEP_OCCUPANCY, edgeID)
     return result.read("!f")[0] # Variable value
+def cmdGetEdgeVariable_meanSpeed(edgeID):
+    result = buildSendReadNew1StringParamCmd(tc.CMD_GET_EDGE_VARIABLE, tc.LAST_STEP_MEAN_SPEED, edgeID)
+    return result.read("!f")[0] # Variable value
+def cmdGetEdgeVariable_LENGTH(edgeID):
+    result = buildSendReadNew1StringParamCmd(tc.CMD_GET_EDGE_VARIABLE, tc.VAR_LENGTH, edgeID)
+    return result.read("!f")[0] # Variable value
+def cmdGetEdgeVariable_speed(laneID):
+    result = buildSendReadNew1StringParamCmd(tc.CMD_GET_EDGE_VARIABLE, tc.VAR_MAXSPEED, edgeID)
+    return result.read("!f")[0] # Variable value
