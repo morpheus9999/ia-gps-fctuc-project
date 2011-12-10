@@ -3,13 +3,12 @@ from cosmoConstants import USUAL_AGENT_COLOR, STOPPED_AGENT_COLOR, CHANGED_ROUTE
 from cosmoNetwork import Network
 from cosmoPopulation import Population
 sys.path.append(os.path.join('..', '..', 'sumo-0.12.2', 'tools', 'traci'))
-from traciControl import initTraCI, cmdSimulationStep, cmdGetSimulationVariable_arrivedIDList, cmdGetSimulationVariable_departedIDList, cmdGetVehicleVariable_idList, cmdGetVehicleVariable_laneID, cmdGetVehicleVariable_position, cmdGetVehicleVariable_speed, cmdChangeVehicleVariable_speed, cmdChangeVehicleVariable_color, cmdChangeVehicleVariable_changeRoute, cmdGetLaneVariable_speed, cmdClose, cmdGetEdgeVariable_idList, cmdGetEdgeVariable_occupancy
+from traciControl import initTraCI, cmdSimulationStep, cmdGetSimulationVariable_arrivedIDList, cmdGetSimulationVariable_departedIDList, cmdGetVehicleVariable_idList, cmdGetVehicleVariable_laneID, cmdGetVehicleVariable_position, cmdGetVehicleVariable_speed, cmdChangeVehicleVariable_speed, cmdChangeVehicleVariable_color, cmdChangeVehicleVariable_changeRoute,  cmdGetLaneVariable_speed, cmdClose , cmdGetEdgeVariable_idList, cmdGetEdgeVariable_occupancy, cmdGetEdgeVariable_meanSpeed,cmdGetEdgeVariable_speed
 
 
 class Controller:
 
 	def __init__(self):
-		
 		# checks if exactly 1 argument was given (simulationConfigFile)
 		nArgs = len(sys.argv)
 		if nArgs < 2:
@@ -37,7 +36,7 @@ class Controller:
 			
 			tree = ET.parse(configFile).getroot()
 			inputSubTree = tree.find('input')
-
+            
 			# ... name of the network file ...
 			netFile = configDirectory + inputSubTree.find('net-file').get('value')
 			# ... name of the route file ...
@@ -85,7 +84,7 @@ class Controller:
 		self.__population = Population(self.__routesFile, self.__network)
 		if not self.__population.isValid():
 			sys.exit('Can\'t parse the file ' + self.__routesFile + '. Please recheck the file\'s name and syntax')
-		GRAPHICAL_INTERFACE = 1
+		GRAPHICAL_INTERFACE =1
 		# starts sumo and opens communication with traci (-N para iniciar o sumo-gui em pausa)
 		if(GRAPHICAL_INTERFACE):
 			subprocess.Popen('%s -c %s -N' % (os.path.join('..', '..', 'sumo-0.12.2', 'bin', 'sumo-gui'), sys.argv[1]), shell=True, stdout=sys.stdout)
@@ -107,16 +106,17 @@ class Controller:
 				continue
 			
 			# updates status of stopped agents
-			#self.__accidentTimer(stoppedAgents)
+			self.__accidentTimer(stoppedAgents)
 			
 			# updates the network weights and statistics and checks agent decisions, providing departed and arrived agents for the simulated step 
 			self.__updateEdgeWeights()
+			#print self.__network
 			self.__network.updateOccupancyStats()
 			self.__population.agentActions(simulationStep, cmdGetSimulationVariable_departedIDList(), cmdGetSimulationVariable_arrivedIDList(), self)
 			
 			# simulates accidents
 			if random.random() < ACCIDENT_PROBABILITY:
-				self.__simulateAccident(stoppedAgents, simulationStep)
+				self.__simulateAccident(stoppedAgents,simulationStep)
 
 		# closes the communication with traci
 		cmdClose()
@@ -127,20 +127,40 @@ class Controller:
 
 	# updates network edge weights
 	def __updateEdgeWeights(self):
-
+                P1=0
+                P2=0
+                
+                
 		edgeIdList = cmdGetEdgeVariable_idList()
 		edgeWeights = {}
 		
 		for edgeId in edgeIdList:
 			if edgeId[0] != ':':
-				edgeWeights[edgeId] = cmdGetEdgeVariable_occupancy(edgeId)
-					
+                                print edgeId
+				#edgeWeights[edgeId] = cmdGetEdgeVariable_occupancy(edgeId)
+                                meanSpeed= cmdGetEdgeVariable_meanSpeed(edgeId)
+                                print "MEANSPEED"                                       
+                                print meanSpeed
+                                
+                                if(meanSpeed==0):
+                                      P1=0.0
+                                      P2=1.0
+                                else:
+                                        P1=0.9
+                                        P2=0.1
+                                print "maxspeed"       
+                                maxspeed= cmdGetLaneVariable_speed(edgeId+"_0")       
+                                                                       
+                                print maxspeed
+                                #falta o valor minimo
+				edgeWeights[edgeId] = 	P1*meanSpeed+P2*maxspeed
+				
 		self.__network.setEdgeWeights(edgeWeights)
 
 
 	# stops an agent to simulate an accident
 	def __simulateAccident(self, stoppedAgents, simulationStep):
-		
+		print 'UI'
 		agentIdList = cmdGetVehicleVariable_idList()
 		agentId = agentIdList[random.randint(0,len(agentIdList)-1)]
 		alreadyStopped = False
@@ -183,9 +203,13 @@ class Controller:
 		parseBool = False
 		
 		while parseBool == False:
-			try:			
-				# parses the tripinfo file for trip durations and route lengths
+
+			try:
 				tree = ET.parse(self.__tripinfoFile)
+				
+				print 
+				
+				# parses the tripinfo file for trip durations and route lengths
 				durations = []
 				routeLengths = []
 				treepinfos = tree.getroot().findall('tripinfo')
@@ -195,6 +219,7 @@ class Controller:
 					routeLengths.append(float(treepinfo.get('routeLength')))
 				
 				parseBool = True
+	
 			except:
 				# print 'Can\'t parse the file ' + self.__tripinfoFile + '. Please recheck the file\'s name and syntax'
 				pass
@@ -260,9 +285,10 @@ class Controller:
 
 	# uses traci to change agent's route
 	def setAgentRoute(self, agentId, newRoute):
-
+                print "%-7s %-5s"% ("AGENT:", agentId)
 		cmdChangeVehicleVariable_changeRoute(agentId, newRoute)
 		cmdChangeVehicleVariable_color(agentId, CHANGED_ROUTE_AGENT_COLOR)
+		print "acabou"
 
 
 # initializes and starts the simulation
