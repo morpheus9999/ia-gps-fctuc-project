@@ -126,6 +126,7 @@ class Network:
 				# OccupancyDijsktra - algorithm = 1
 				elif algorithm == 1:
 					vwValue = D[v] + self.__graph[v][w] + pow((self.__graph[v][w] * self.__edgeWeights[w]), 2)
+				# RoadBlock - algorithm = 2
 				elif algorithm == 2:
 					if(self.__edgeWeights[w]>OCCUPANCY_LIMIT):
 						break
@@ -151,7 +152,8 @@ class Network:
 				toEdge = endEdge
 			route.insert(0, toEdge)
 		except:
-			print '>>>>>>>>>>>>>>>> safo!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! <<<<<<<<<<<<<<<<<<<'
+			# catches the no route found exception
+			# for example, caused by road blocks when algorithm = 2
 			return []
 
 		return route
@@ -174,10 +176,5 @@ class Network:
 
 	# returns the average of averages and standard deviation of occupancies
 	def returnOccupancyStats(self):
-		
-		# print self.__occupancyAvgs
-		# print numpy.average(self.__occupancyAvgs)
-		# print self.__occupancyStdDevs
-		# print numpy.average(self.__occupancyStdDevs)
 		
 		return numpy.average(self.__occupancyAvgs), numpy.average(self.__occupancyStdDevs)
