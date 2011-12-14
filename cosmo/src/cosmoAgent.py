@@ -2,7 +2,6 @@ import math, random
 from cosmoCommunication import Communication
 from cosmoConstants import ACCEPT_NEW_ROUTE_PROB, ROUTING_ALGORITHM
 
-
 class Agent:
 
 	def __init__(self, network, route, routeCheckFrequency):
@@ -20,7 +19,8 @@ class Agent:
 		self.__lastRouteCheck = -1
 		self.__pendingCommunications = []
 		self.__ignoringCommunications = []
-
+                self.__lastRouteCheck2 = -1
+                self.__lane=""
 
 	def __str__(self):
 
@@ -98,7 +98,10 @@ class Agent:
 
 
 	def updateAgentLane(self, lane):
-		
+                #print "lane:::::",lane
+                #print "self lane::",self.__lane
+		if lane != self.__lane :
+                        self.__lastRouteCheck2 =-1
 		self.__lane = lane
 
 
@@ -167,12 +170,18 @@ class Agent:
 
 		return self.__lastRouteCheck
 
+        def getLastRouteCheck2(self):
 
+		return self.__lastRouteCheck2
+	
 	def setLastRouteCheck(self, simulationStep):
 
 		self.__lastRouteCheck = simulationStep
 
+        def setLastRouteCheck2(self, var):
 
+		self.__lastRouteCheck2 = var
+		
 	def getNPendingCommunications(self):
 
 		return len(self.__pendingCommunications)

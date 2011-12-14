@@ -36,13 +36,12 @@ class Network:
 	def __parseNetworkXML(self, networkFile):
 
 		try:
-			print networkFile
 			tree = ET.parse(networkFile)
-			print "Entra 16"
+			
 			# parses the network normal edge distances
 			distances = {}
 			edges = tree.getroot().findall('edge')
-			print "Entra 10"
+			
 			for edge in edges:
 				if edge[0] != ':':
 					edge.find('lanes').find('lane')
@@ -51,7 +50,7 @@ class Network:
 			# parses the network succeeding edges
 			graph = {}
 			succs = tree.getroot().findall('succ')
-			print "Entra 11"
+			
 			for succ in succs:
 				edge = succ.get('edge')
 			
@@ -66,11 +65,10 @@ class Network:
 						if succEdge != 'SUMO_NO_DESTINATI':
 							if graphKey.get(succEdge) == None:
 								graphKey[succEdge] = distances[succEdge]
-			print "Entra 13"				
+								
 			return graph
 		
 		except:
-			print "Entra nulo"
 			return None
 
 	

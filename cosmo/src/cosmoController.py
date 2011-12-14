@@ -3,12 +3,13 @@ from cosmoConstants import USUAL_AGENT_COLOR, STOPPED_AGENT_COLOR, CHANGED_ROUTE
 from cosmoNetwork import Network
 from cosmoPopulation import Population
 sys.path.append(os.path.join('..', '..', 'sumo-0.12.2', 'tools', 'traci'))
-from traciControl import initTraCI, cmdSimulationStep, cmdGetSimulationVariable_arrivedIDList, cmdGetSimulationVariable_departedIDList, cmdGetVehicleVariable_idList, cmdGetVehicleVariable_laneID, cmdGetVehicleVariable_position, cmdGetVehicleVariable_speed, cmdChangeVehicleVariable_speed, cmdChangeVehicleVariable_color, cmdChangeVehicleVariable_changeRoute,  cmdGetLaneVariable_speed, cmdClose , cmdGetEdgeVariable_idList, cmdGetEdgeVariable_occupancy, cmdGetEdgeVariable_meanSpeed,cmdGetEdgeVariable_speed
+from traciControl import initTraCI, cmdSimulationStep, cmdGetSimulationVariable_arrivedIDList, cmdGetSimulationVariable_departedIDList, cmdGetVehicleVariable_idList, cmdGetVehicleVariable_laneID, cmdGetVehicleVariable_position, cmdGetVehicleVariable_speed, cmdChangeVehicleVariable_speed, cmdChangeVehicleVariable_color, cmdChangeVehicleVariable_changeRoute,  cmdGetLaneVariable_speed, cmdClose , cmdGetEdgeVariable_idList, cmdGetEdgeVariable_occupancy, cmdGetEdgeVariable_meanSpeed,cmdGetEdgeVariable_speed, cmdGetVehicleVariable_lanePosition,cmdGetEdgeVariable_LENGTH,cmdGetLaneVariable_length
 
 
 class Controller:
 
 	def __init__(self):
+                print "ESTA AKI!!!!!!!!!!!!!!!!!!!!!!"
 		# checks if exactly 1 argument was given (simulationConfigFile)
 		nArgs = len(sys.argv)
 		if nArgs < 2:
@@ -23,7 +24,7 @@ class Controller:
 		self.__network = Network(self.__networkFile)
 		if self.__network.getGraph() == None:
 			sys.exit('Can\'t parse the file ' + self.__networkFile + '. Please recheck the file\'s name and syntax')
-
+                print "ESTA AKI!!!!!!!!!!!!!!!!!!!!!!"
 		# sets the last network update to never
 		# self.__lastNetworkUpdate = -1
 
@@ -73,13 +74,13 @@ class Controller:
 
 
 	def runSimulation(self):
-		
+		print "ESTA AKI!!!!!!!!!!!!!!!!!!!!!!"
 		f = open('output.txt', 'a')
 		f.write('Network = ' + sys.argv[1] + '\nnumpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)\n')
 
 		# create set of plans
 		# os.system('python ../simulations/randomTrips2.py -n ' + self.__networkFile + ' -o trips.xml -r ' + self.__routesFile + ' -e ' + sys.argv[2] + ' -p ' + sys.argv[3] + ' -B ' + sys.argv[4])
-	
+                print "ESTA AKI2!!!!!!!!!!!!!!!!!!!!!!"
 		# calls for the parsing of the network file
 		self.__population = Population(self.__routesFile, self.__network)
 		if not self.__population.isValid():
@@ -129,18 +130,18 @@ class Controller:
 	def __updateEdgeWeights(self):
                 P1=0
                 P2=0
-                
+                P3=0
                 
 		edgeIdList = cmdGetEdgeVariable_idList()
 		edgeWeights = {}
 		
 		for edgeId in edgeIdList:
 			if edgeId[0] != ':':
-                                print edgeId
+                                #print edgeId
 				#edgeWeights[edgeId] = cmdGetEdgeVariable_occupancy(edgeId)
                                 meanSpeed= cmdGetEdgeVariable_meanSpeed(edgeId)
-                                print "MEANSPEED"                                       
-                                print meanSpeed
+                                #print "MEANSPEED"                                       
+                                #print meanSpeed
                                 
                                 if(meanSpeed==0):
                                       P1=0.0
@@ -148,12 +149,12 @@ class Controller:
                                 else:
                                         P1=0.9
                                         P2=0.1
-                                print "maxspeed"       
+                                #print "maxspeed"       
                                 maxspeed= cmdGetLaneVariable_speed(edgeId+"_0")       
                                                                        
-                                print maxspeed
+                                #print maxspeed
                                 #falta o valor minimo
-				edgeWeights[edgeId] = 	P1*meanSpeed+P2*maxspeed
+				edgeWeights[edgeId] = 	(P1*meanSpeed+P2*maxspeed)#cmdGetEdgeVariable_LENGTH(edgeId)
 				
 		self.__network.setEdgeWeights(edgeWeights)
 
@@ -244,6 +245,17 @@ class Controller:
 		return position
 
 
+        # uses traci to access agent link number
+	def getAgentPositionLane(self, agentId):
+
+		position = cmdGetVehicleVariable_lanePosition(agentId)
+		return position
+
+        # uses traci to access agent link number
+	def getAgent_lengthLane(self, laneId):
+
+		length = cmdGetLaneVariable_length(laneId)
+		return length        
 	# uses traci to access agent current speed
 	def getAgentSpeed(self, agentId):
 
