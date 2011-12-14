@@ -119,3 +119,5 @@ Network = ../simulations/square/square.sumo.cfg
 numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
 Network = ../simulations/square/square.sumo.cfg
 numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+Network = ../simulations/square/square.sumo.cfg
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
