@@ -98,7 +98,9 @@ class Controller:
 		
 		# runs until simulation time is over and there is no more active agents
 		simulationStep = self.__simulationFirstStep
+		testess=0
 		while not (simulationStep >= self.__simulationFinalStep and activeAgents == []):
+
 			
 			# advances 1s in the simulation and checks for active agents
 			simulationStep += 1
@@ -112,12 +114,17 @@ class Controller:
 			# updates the network weights and statistics and checks agent decisions, providing departed and arrived agents for the simulated step 
 			self.__updateEdgeWeights()
 			#print self.__network
-			self.__network.updateOccupancyStats()
-			self.__population.agentActions(simulationStep, cmdGetSimulationVariable_departedIDList(), cmdGetSimulationVariable_arrivedIDList(), self)
+			#self.__network.updateOccupancyStats()
 			
+                                
+                        self.__population.agentActions(simulationStep, cmdGetSimulationVariable_departedIDList(), cmdGetSimulationVariable_arrivedIDList(),testess, self)
+                        testess= (testess+1)%2
+                        #print testess
+                        
+                                
 			# simulates accidents
-			if random.random() < ACCIDENT_PROBABILITY:
-				self.__simulateAccident(stoppedAgents,simulationStep)
+			#if random.random() < ACCIDENT_PROBABILITY:
+			#	self.__simulateAccident(stoppedAgents,simulationStep)
 
 		# closes the communication with traci
 		cmdClose()
@@ -147,13 +154,14 @@ class Controller:
                                       P1=0.0
                                       P2=1.0
                                 else:
-                                        P1=0.9
-                                        P2=0.1
+                                        P1=0.5
+                                        P2=0.5
                                 #print "maxspeed"       
                                 maxspeed= cmdGetLaneVariable_speed(edgeId+"_0")       
                                                                        
                                 #print maxspeed
                                 #falta o valor minimo
+                                #print "::::::::" ,(P1*meanSpeed+P2*maxspeed)
 				edgeWeights[edgeId] = 	(P1*meanSpeed+P2*maxspeed)#cmdGetEdgeVariable_LENGTH(edgeId)
 				
 		self.__network.setEdgeWeights(edgeWeights)
@@ -161,7 +169,7 @@ class Controller:
 
 	# stops an agent to simulate an accident
 	def __simulateAccident(self, stoppedAgents, simulationStep):
-		print 'UI'
+		#print 'UI'
 		agentIdList = cmdGetVehicleVariable_idList()
 		agentId = agentIdList[random.randint(0,len(agentIdList)-1)]
 		alreadyStopped = False

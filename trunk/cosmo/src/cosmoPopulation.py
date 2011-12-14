@@ -59,8 +59,8 @@ class Population:
 			return True
 
 
-	def agentActions(self, simulationStep, departedAgents, arrivedAgents, controller):
-
+	def agentActions(self, simulationStep, departedAgents, arrivedAgents,testess, controller):
+                #print "::",testess
 		# updates agents state for departed and arrived agents
 		for agentId in departedAgents:
 			self.__agentList[agentId].setDepartureTime(simulationStep)
@@ -68,24 +68,26 @@ class Population:
 		for agentId in arrivedAgents:
 			self.__agentList[agentId].setArrivalTime(simulationStep)
 
+                entra=0
+                        
 		# updates agents decisions considering ...
 		updatedPositions = False
 		for agentId, agent in self.__agentList.iteritems():
                         
 			# ... the use of cosmos ...
 			routeCheckFrequency = agent.getRouteCheckFrequency()
-			if routeCheckFrequency != -1:
+			if (routeCheckFrequency != -1)and (testess!=0) :
 
 				# ... state (during trip) ...
 				agentState = agent.getState()
 				if agentState == 1:
-
+                                        
 					# updates agent positioning and speed
 					agent.updateAgentLane(controller.getAgentLane(agentId))
-					agent.updateAgentSpeed(controller.getAgentSpeed(agentId))
+					#agent.updateAgentSpeed(controller.getAgentSpeed(agentId))
 					#print " ::::::::",controller.getAgentPositionLane(agentId)
 					#print " ::::::::", controller.getAgent_lengthLane(controller.getAgentLane(agentId))
-					agent.updateAgentPosition(controller.getAgentPosition(agentId))
+					#agent.updateAgentPosition(controller.getAgentPosition(agentId))
                                         
                                         #print "%-7s %-5s %-7s %.2f %-5s %-7s"% ("AGENT:", agentId," speed: ",agent.getSpeed(),"position",agent.getLane())
                                         #print agentId + agent.getSpeed()      
@@ -95,9 +97,11 @@ class Population:
 
                                         #######FALTA ALTERAR ESTE METODO INCUIR A DISTANCIA K ESTA DO PONTO X PARA NAO SPAMAR ALTERACOES DE ROTAS
 					#if random.random() < self.__checkRouteProbability(simulationStep, agent.getLastRouteCheck(), agent.getRouteCheckFrequency(), agent.getSpeed(), controller.getLaneMaxSpeed(agent.getLane())):
-					if (controller.getAgent_lengthLane(controller.getAgentLane(agentId)) - controller.getAgentPositionLane(agentId) < 10) and (agent.getLastRouteCheck2()== -1) :
+                                        
+					if (agent.getLastRouteCheck2()== -1) and (controller.getAgent_lengthLane(agent.getLane()) - controller.getAgentPositionLane(agentId) < 10) :
+                                                entra=entra+1
 						# updates agent perception
-						print "ENTRA!!!!! ->alterar rotas"
+						#print "ENTRA!!!!! ->alterar rotas::",agentId,"lane::::",agent.getLane()
 						agent.updateAgentPerception(controller.getNetworkEdgeWeights())
 					
 						# optimizes route
@@ -111,7 +115,7 @@ class Population:
 						if(routePlanning != -1):
 							agent.setLastRouteCheck(simulationStep)
                                         
-
+                                                
 				# ... state (accident) ...
 				elif agentState == 3:
 					
@@ -124,7 +128,9 @@ class Population:
 						# resolves agent communications
 						updatedPositions = self.__resolveCommunications(agentId, agent, simulationStep, updatedPositions, controller)
 
+                print "entra::",entra
 
+                        
 	# returns the check route probability considering an individual frequency coefficient and the time since the last check
 	def __checkRouteProbability(self, simulationStep, agentLastRouteCheck, agentCheckFrequency, agentSpeed, laneMaxSpeed):
 		
