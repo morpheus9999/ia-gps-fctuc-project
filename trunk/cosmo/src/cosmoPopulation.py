@@ -1,6 +1,33 @@
 import math, random, xml.etree.ElementTree as ET
 from cosmoAgent import Agent
 from cosmoConstants import COSMO_USE_PERCENT, ROUTE_CHECK_FREQUENCY_VARIATION, BROADCAST_DISTANCE
+from threading import Thread
+
+class testThread(Thread):
+        def __init__(self,agent,agentId,controller,simulationStep):
+                Thread.__init__(self)
+                self.agent=agent
+                self.agentId=agentId
+                self.routePlanning=-2
+                self.simulationStep=simulationStep
+                self.controller=controller
+
+        def run(self):
+                self.routePlanning = self.agent.planRoute(self.agentId)
+		#if(self.routePlanning == 1):
+			#self.controller.setAgentRoute(self.agentId, self.agent.getRoute())
+
+                self.agent.setLastRouteCheck2(1)
+                                                
+                # sets last route check
+		if(self.routePlanning != -1):
+                        self.agent.setLastRouteCheck(self.simulationStep)
+                
+
+        
+
+
+
 
 class Population:
 
@@ -69,7 +96,7 @@ class Population:
 			self.__agentList[agentId].setArrivalTime(simulationStep)
 
                 entra=0
-                        
+                lists=[]
 		# updates agents decisions considering ...
 		updatedPositions = False
 		for agentId, agent in self.__agentList.iteritems():
@@ -77,11 +104,7 @@ class Population:
 			# ... the use of cosmos ...
 			routeCheckFrequency = agent.getRouteCheckFrequency()
 			if (routeCheckFrequency != -1)and (testess!=0) :
-				t=0
-				while 1 :
-					t=t+1
-			
-			
+
 				# ... state (during trip) ...
 				agentState = agent.getState()
 				if agentState == 1:
@@ -104,20 +127,16 @@ class Population:
                                         
 					if (agent.getLastRouteCheck2()== -1) and (controller.getAgent_lengthLane(agent.getLane()) - controller.getAgentPositionLane(agentId) < 10) :
                                                 entra=entra+1
+                                                
 						# updates agent perception
 						#print "ENTRA!!!!! ->alterar rotas::",agentId,"lane::::",agent.getLane()
 						agent.updateAgentPerception(controller.getNetworkEdgeWeights())
-					
+						
+                                                current=testThread(agent,agentId,controller,simulationStep)
+                                                lists.append(current)
+                                                current.start()
 						# optimizes route
-						routePlanning = agent.planRoute(agentId)
-						if(routePlanning == 1):
-							controller.setAgentRoute(agentId, agent.getRoute())
-
-                                                agent.setLastRouteCheck2(1)
-                                                
-						# sets last route check
-						if(routePlanning != -1):
-							agent.setLastRouteCheck(simulationStep)
+						
                                         
                                                 
 				# ... state (accident) ...
@@ -133,6 +152,8 @@ class Population:
 						updatedPositions = self.__resolveCommunications(agentId, agent, simulationStep, updatedPositions, controller)
 
                 print "entra::",entra
+                for cadauma in lists:
+                        cadauma.join()
 
                         
 	# returns the check route probability considering an individual frequency coefficient and the time since the last check
