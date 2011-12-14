@@ -12,7 +12,7 @@ STOPPED_AGENT_COLOR = (255,0,0,255)
 CHANGED_ROUTE_AGENT_COLOR = (0,255,0,255)
 
 # Accident probability each step (e.g. 0.001)
-ACCIDENT_PROBABILITY = 0.7
+ACCIDENT_PROBABILITY = 0.5
 
 # Time agents will be stopped after an accident
 ACCIDENT_STOP_TIME = 300

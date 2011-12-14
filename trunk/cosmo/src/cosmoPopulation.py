@@ -83,8 +83,10 @@ class Population:
 					# updates agent positioning and speed
 					agent.updateAgentLane(controller.getAgentLane(agentId))
 					agent.updateAgentSpeed(controller.getAgentSpeed(agentId))
-					#agent.updateAgentPosition(controller.getAgentPosition(agentId)
-
+					#print " ::::::::",controller.getAgentPositionLane(agentId)
+					#print " ::::::::", controller.getAgent_lengthLane(controller.getAgentLane(agentId))
+					agent.updateAgentPosition(controller.getAgentPosition(agentId))
+                                        
                                         #print "%-7s %-5s %-7s %.2f %-5s %-7s"% ("AGENT:", agentId," speed: ",agent.getSpeed(),"position",agent.getLane())
                                         #print agentId + agent.getSpeed()      
                                         #print "Agent :"+agentId+ " speed :"+ agent.getSpeed()
@@ -92,9 +94,10 @@ class Population:
 					# if ((simulationStep - agent.getDepartureTime()) / routeCheckFrequency) * routeCheckFrequency > agent.getLastRouteCheck():
 
                                         #######FALTA ALTERAR ESTE METODO INCUIR A DISTANCIA K ESTA DO PONTO X PARA NAO SPAMAR ALTERACOES DE ROTAS
-					if random.random() < self.__checkRouteProbability(simulationStep, agent.getLastRouteCheck(), agent.getRouteCheckFrequency(), agent.getSpeed(), controller.getLaneMaxSpeed(agent.getLane())):
-						
+					#if random.random() < self.__checkRouteProbability(simulationStep, agent.getLastRouteCheck(), agent.getRouteCheckFrequency(), agent.getSpeed(), controller.getLaneMaxSpeed(agent.getLane())):
+					if (controller.getAgent_lengthLane(controller.getAgentLane(agentId)) - controller.getAgentPositionLane(agentId) < 10) and (agent.getLastRouteCheck2()== -1) :
 						# updates agent perception
+						print "ENTRA!!!!! ->alterar rotas"
 						agent.updateAgentPerception(controller.getNetworkEdgeWeights())
 					
 						# optimizes route
@@ -102,6 +105,8 @@ class Population:
 						if(routePlanning == 1):
 							controller.setAgentRoute(agentId, agent.getRoute())
 
+                                                agent.setLastRouteCheck2(1)
+                                                
 						# sets last route check
 						if(routePlanning != -1):
 							agent.setLastRouteCheck(simulationStep)
