@@ -24,3 +24,98 @@ Network = ../simulations/lattice/lattice.sumo.cfg0
 numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
 Network = ../simulations/lattice/lattice.sumo.cfg0
 numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+Network = ../simulations/square/square.sumo.cfg
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+Network = ../simulations/square/square.sumo.cfg
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+Network = ../simulations/square/square.sumo.cfg
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+Network = ../simulations/square/square.sumo.cfg
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+Network = ../simulations/square/square.sumo.cfg
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+Network = ../simulations/square/square.sumo.cfg
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+Network = ../simulations/square/square.sumo.cfg
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+Network = ../simulations/square/square.sumo.cfg
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+Network = ../simulations/square/square.sumo.cfg
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+Network = ../simulations/square/square.sumo.cfg
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+Network = ../simulations/square/square.sumo.cfg
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+Network = ../simulations/square/square.sumo.cfg
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+Network = ../simulations/square/square.sumo.cfg
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+Network = ../simulations/square/square.sumo.cfg
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+Network = ../simulations/square/square.sumo.cfg
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+Network = ../simulations/square/square.sumo.cfg
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+Network = ../simulations/square/square.sumo.cfg
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+431.076 1886.77298 nan nan
+Network = ../simulations/lattice/lattice.sumo.cfg1
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+Network = ../simulations/square/square.sumo.cfg
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+Network = ../simulations/lattice/lattice.sumo.cfg1
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+Network = ../simulations/lattice/lattice.sumo.cfg1
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+Network = ../simulations/lattice/lattice.sumo.cfg1
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+Network = ../simulations/lattice/lattice.sumo.cfg1
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+Network = ../simulations/lattice/lattice.sumo.cfg1
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+Network = ../simulations/lattice/lattice.sumo.cfg1
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+Network = ../simulations/lattice/lattice.sumo.cfg1
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+Network = ../simulations/lattice/lattice.sumo.cfg1
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+Network = ../simulations/lattice/lattice.sumo.cfg1
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+Network = ../simulations/lattice/lattice.sumo.cfg1
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+Network = ../simulations/lattice/lattice.sumo.cfg1
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+Network = ../simulations/square/square.sumo.cfg
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+Network = ../simulations/square/square.sumo.cfg
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+Network = ../simulations/square/square.sumo.cfg
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+Network = ../simulations/square/square.sumo.cfg
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+Network = ../simulations/square/square.sumo.cfg
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+Network = ../simulations/square/square.sumo.cfg
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+Network = ../simulations/square/square.sumo.cfg
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+Network = ../simulations/square/square.sumo.cfg
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+Network = ../simulations/square/square.sumo.cfg
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+Network = ../simulations/square/square.sumo.cfg
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+Network = ../simulations/square/square.sumo.cfg
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+Network = ../simulations/square/square.sumo.cfg
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+Network = ../simulations/square/square.sumo.cfg
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+Network = ../simulations/square/square.sumo.cfg
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+Network = ../simulations/square/square.sumo.cfg
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+Network = ../simulations/square/square.sumo.cfg
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
+Network = ../simulations/square/square.sumo.cfg
+numpy.average(durations) numpy.average(routeLengths) avgOccupancyAvgs avgDevOccupancyStdDevs)
