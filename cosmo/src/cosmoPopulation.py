@@ -77,7 +77,11 @@ class Population:
 			# ... the use of cosmos ...
 			routeCheckFrequency = agent.getRouteCheckFrequency()
 			if (routeCheckFrequency != -1)and (testess!=0) :
-
+				t=0
+				while 1 :
+					t=t+1
+			
+			
 				# ... state (during trip) ...
 				agentState = agent.getState()
 				if agentState == 1:
